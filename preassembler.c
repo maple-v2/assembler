@@ -1,8 +1,10 @@
 #include "globals.h"
 
-
-
-
+/* simple helpers */
+static int starts_with_kw(const char *s, const char *kw) {
+    while (*s==' ' || *s=='\t') s++;
+    return strncmp(s, kw, strlen(kw)) == 0;
+}
 macro* make_macro(FILE *fp) {
     macro* head = NULL;
     char line[MAX_LINE_LEN];
@@ -77,6 +79,15 @@ void process_file(FILE* in, FILE* out, macro* macros) {
     char new_line[MAX_LINE_LEN];
 
     while (fgets(line, sizeof(line), in)) {
+        /* Skip macro definition blocks in the expanded output */
+        if (starts_with_kw(line, "mcro")) {
+            /* consume until mcroend (not emitted) */
+            while (fgets(line, sizeof(line), in)) {
+                if (starts_with_kw(line, "mcroend")) break;
+            }
+            continue;
+        }
+
         replace_macros_in_line(line, macros, new_line);
         fputs(new_line, out);
     }

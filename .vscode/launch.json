@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/maple/Desktop/project/2",
-      "program": "c:/Users/maple/Desktop/project/2/build/Debug/outDebug",
+      "cwd": "c:/Users/maple/Desktop/projectt good",
+      "program": "c:/Users/maple/Desktop/projectt good/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
